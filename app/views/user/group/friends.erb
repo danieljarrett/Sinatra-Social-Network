@@ -1,0 +1,9 @@
+<% friends.each do |friend| %>
+		
+	<div class="panel">
+
+		<%= erb :'user/show/default', locals: { user: friend } %>
+
+	</div>
+
+<% end %>

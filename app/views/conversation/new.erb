@@ -1,0 +1,52 @@
+<div class="hor-wrap" id="composer">
+	<div class="hor-inner">
+		<div class="table">
+			<div class="tablecell">
+
+				<div class="row">
+
+				  <div class="large-12 columns">
+
+						<div class="panel">
+
+							<h1>New Conversation</h1>
+
+							<div class="panel">
+
+								<ul>
+
+									<form action="/conversations/new" method="POST">
+
+										<li>
+											<strong>Subject: </strong>
+											<input name="subject" type="text">
+										</li>
+										<li>
+											<strong>To: </strong>
+											<input name="participants" type="text" placeholder="Enter one or more usernames, separated by spaces...">
+										</li>
+										<li>
+											<strong>Message: </strong>
+											<textarea name="body" type="text" cols="40" rows="8"></textarea>
+										</li>
+										<li>
+											<input type="submit" class="button flat" value="SEND">
+											<input type="hidden" name="_method" value="PUT">
+										</li>
+
+									</form>
+
+								</ul>
+
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,27 @@
+<div class="row">
+
+  <div class="large-5 columns">
+
+  	<div class="panel">
+			
+  		<h1>Conversations</h1>
+
+  		<a href="/conversations/new" class="link-button composer flat">NEW THREAD</a>
+
+			<%= erb :'conversation/group/sidebar', locals: { user: current_user } %>
+		
+		</div>
+
+	</div>
+
+  <div class="large-7 columns">
+
+  	<% if conversation %>
+
+  		<%= erb :'conversation/show/default', locals: { conversation: conversation } %>
+
+  	<% end %>
+
+  </div>
+
+</div>

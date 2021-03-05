@@ -1,0 +1,6 @@
+<form action="/posts/new/<%= user.id %>" method="POST">
+
+	<input type="hidden" name="_method" value="PUT">
+	<textarea placeholder="Write a post..." onKeyPress="return submitenter(this, event)" name="body"></textarea>
+
+</form>

@@ -1,0 +1,5 @@
+<% user.conversations.order("created_at DESC").each do |conversation| %>
+
+  <%= erb :'conversation/show/compact', locals: { conversation: conversation } %>
+
+<% end %>

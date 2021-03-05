@@ -1,0 +1,39 @@
+<div class="panel">
+
+	<div class="conversation-header">
+
+		<h1>
+			<% conversation.participants.order("first_name").each.with_index do |participant, index| %>
+				<% if index > 0 %><span class="thin-font"> | </span><% end %>
+				<a href="/profile/<%= participant.id %>" class="name-link"><%= participant.name %></a>
+			<% end %>
+		</h1>
+
+		<h1><%= conversation.subject %></h1>
+
+	</div>
+
+	<% if conversation.participants.include?(current_user) %>
+
+		<form action="/conversations/<%= conversation.id %>/delete" method="POST" class="square">
+
+			<input type="submit" class="button flat cross" value="&times;">
+			<input type="hidden" name="_method" value="DELETE">
+
+		</form>
+
+	<% end %>
+
+	<% conversation.messages.order("created_at").each do |message| %>
+
+    <%= erb :'message/show', locals: { message: message } %>
+
+	<% end %>
+
+	<% if conversation.participants.include?(current_user) %>
+		
+		<%= erb :'message/new', locals: { conversation: conversation } %>
+	
+	<% end %>
+
+</div>

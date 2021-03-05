@@ -1,0 +1,5 @@
+<% user.owned_posts.order("created_at DESC").each do |post| %>
+
+  <%= erb :'post/show/owned', locals: { post: post } %>
+
+<% end %>

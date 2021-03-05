@@ -1,0 +1,68 @@
+<div class="row">
+
+  <div class="large-12 columns">
+
+		<div class="panel">
+
+			<h1><%= user.name %></h1>
+
+			<div class="panel">
+
+				<% if user == current_user %>
+
+					<ul>
+
+						<form action="/users/<%= user.id %>/edit" method="POST" class="embed-form">
+
+							<li>
+								<strong>Gender: </strong>
+								<input name="user[gender]" type="text" value="<%= user.gender %>">
+							</li>
+							<li>
+								<strong>Hometown: </strong>
+								<input name="user[hometown]" type="text" value="<%= user.hometown %>">
+							</li>
+							<li>
+								<strong>Current City: </strong>
+								<input name="user[current_city]" type="text" value="<%= user.current_city %>">
+							</li>
+							<li>
+								<strong>Birthday: </strong>
+								<input name="user[dob]" type="text" value="<%= user.dob %>">
+							</li>
+							<li>
+								<strong>Phone: </strong>
+								<input name="user[phone]" type="text" value="<%= user.phone %>">
+							</li>
+							<li>
+								<strong>Email: </strong>
+								<input name="user[email]" type="text" value="<%= user.email %>">
+							</li>
+							<li>
+								<strong>Bio: </strong>
+								<textarea name="user[bio]" type="text" cols="40" rows="8"><%= user.bio %></textarea>
+							</li>
+							<li>
+								<input type="submit" class="button flat" value="SAVE">
+							</li>
+
+						</form>
+
+					</ul>
+
+					<form action="/users/<%= user.id %>/delete" method="POST" class="embed-form">
+
+						<input type="submit" class="button flat" value="DELETE PROFILE">
+						<input type="hidden" name="_method" value="DELETE">
+
+					</form>
+
+				<% end %>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>

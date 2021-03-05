@@ -1,0 +1,53 @@
+<div class="panel">
+
+	<ul>
+		<li>
+			<strong><a href="/profile/<%= comment.author.id %>" class="name-link"><%= comment.author.name %></a> commented:</strong>
+		</li>
+		<li>
+			<%= comment.body %>
+		</li>
+	</ul>
+
+	<% if comment.likers.include?(current_user) %>
+
+		<form action="/likes/comment/<%= comment.id %>/remove" method="POST" class="embed-form">
+
+			<ul>
+				<li>
+					<input type="hidden" name="_method" value="DELETE">
+					<strong>Likes: </strong><%= comment.like_count %> <strong><input type="submit" value="&#9660;" class="inline-block"></input></strong> | <span class="timestamp"><%= comment.created_at %></span>
+				</li>
+			</ul>
+
+		</form>
+
+	<% else %>
+	
+			<form action="/likes/comment/<%= comment.id %>/add" method="POST" class="embed-form">
+
+			<ul>
+				<li>
+					<input type="hidden" name="_method" value="PUT">
+					<strong>Likes: </strong><%= comment.like_count %> <strong><input type="submit" value="&#9650;" class="inline-block"></input></strong> | <span class="timestamp"><%= comment.created_at %></span>
+				</li>
+			</ul>
+
+		</form>
+
+	<% end %>
+
+	<% if comment.author == current_user %>
+
+		<form action="/comments/<%= comment.id %>/delete" method="POST">
+		
+			<a href="/comments/<%= comment.id %>/edit" class="link-button halfwidth flat">EDIT</a>	
+			
+			<input type="submit" class="button flat halfwidth" value="DELETE">
+			<input type="hidden" name="_method" value="DELETE">
+
+		</form>
+
+	<% end %>
+
+</div>

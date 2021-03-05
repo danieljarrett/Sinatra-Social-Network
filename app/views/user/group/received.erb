@@ -1,0 +1,5 @@
+<% received.each do |sender| %>
+		
+		<%= erb :'user/show/compact', locals: { user: sender } %>
+
+<% end %>

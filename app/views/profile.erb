@@ -1,0 +1,35 @@
+<div class="row">
+
+  <div class="large-4 columns">
+
+  	<div class="panel">
+			
+			<%= erb :'user/show/default', locals: { user: user } %>
+		
+		</div>
+
+		<div class="panel">	
+			
+			<%= erb :'post/group/authored', locals: { user: user } %>
+		
+		</div>
+
+	</div>
+
+  <div class="large-8 columns">
+
+  	<% if current_user.friends.include?(user) || current_user == user %>
+
+	  	<div class="panel">
+
+				<%= erb :'post/new', locals: { user: user } %>
+
+			</div>
+
+		<% end %>
+
+		<%= erb :'post/group/owned', locals: { user: user } %>
+
+  </div>
+
+</div>

@@ -1,0 +1,7 @@
+<h1>Recent Posts</h1>
+
+<% user.authored_posts.order("created_at DESC").each do |post| %>
+
+  <%= erb :'post/show/authored', locals: { post: post } %>
+
+<% end %>

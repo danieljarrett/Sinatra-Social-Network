@@ -1,0 +1,65 @@
+<div class="panel">
+
+	<ul>
+		<li>
+			<strong><a href="/profile/<%= post.author.id %>" class="name-link"><%= post.author.name %></a> wrote:</strong>
+		</li>
+		<li>
+			<%= post.body %>
+		</li>
+	</ul>
+
+	<% if post.likers.include?(current_user) %>
+
+		<form action="/likes/post/<%= post.id %>/remove" method="POST" class="embed-form">
+
+			<ul>
+				<li>
+					<input type="hidden" name="_method" value="DELETE">
+					<strong>Likes: </strong><%= post.like_count %> <strong><input type="submit" value="&#9660;" class="inline-block"></input></strong> | <span class="timestamp"><%= post.created_at %></span>
+				</li>
+			</ul>
+
+		</form>
+
+	<% else %>
+	
+			<form action="/likes/post/<%= post.id %>/add" method="POST" class="embed-form">
+
+			<ul>
+				<li>
+					<input type="hidden" name="_method" value="PUT">
+					<strong>Likes: </strong><%= post.like_count %> <strong><input type="submit" value="&#9650;" class="inline-block"></input></strong> | <span class="timestamp"><%= post.created_at %></span>
+				</li>
+			</ul>
+
+		</form>
+
+	<% end %>
+
+	<% if post.author == current_user %>
+
+		<form action="/posts/<%= post.id %>/delete" method="POST">
+			
+			<a href="/posts/<%= post.id %>/edit" class="link-button halfwidth flat">EDIT</a>
+
+			<input type="submit" class="button flat halfwidth" value="DELETE">
+			<input type="hidden" name="_method" value="DELETE">
+
+		</form>
+
+	<% end %>
+
+	<% post.comments.order("created_at").each do |comment| %>
+
+    <%= erb :'comment/show', locals: { comment: comment } %>
+
+	<% end %>
+
+	<% if post.author == current_user || current_user.friends.include?(post.author) || current_user.friends.include?(post.owner) %>
+		
+		<%= erb :'comment/new', locals: { post: post } %>
+	
+	<% end %>
+
+</div>

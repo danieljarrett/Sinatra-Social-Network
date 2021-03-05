@@ -1,0 +1,23 @@
+<div class="row">
+
+  <div class="large-6 columns">
+
+    <% posts.select.with_index { |post, index| index % 2 == 0 } .each do |post| %>
+
+      <%= erb :'post/show/default', locals: { post: post } %>
+
+    <% end %>
+
+  </div>
+
+  <div class="large-6 columns">
+
+    <% posts.select.with_index { |post, index| index % 2 != 0 } .each do |post| %>
+
+      <%= erb :'post/show/default', locals: { post: post } %>
+
+    <% end %>
+
+  </div>
+
+</div>

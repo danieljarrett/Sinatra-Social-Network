@@ -1,0 +1,6 @@
+<form action="/comments/new/<%= post.id %>" method="POST">
+
+	<input type="hidden" name="_method" value="PUT">
+	<textarea placeholder="Write a comment..." onKeyPress="return submitenter(this, event)" name="body"></textarea>
+
+</form>

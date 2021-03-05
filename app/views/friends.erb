@@ -1,0 +1,29 @@
+<div class="row">
+
+  <div class="large-4 columns">
+
+    <div class="panel">
+
+      <h1>Requests Received</h1>
+
+      <%= erb :'user/group/received', locals: { received: current_user.received } %>
+
+    </div>
+
+    <div class="panel">
+
+      <h1>Requests Sent</h1>
+
+      <%= erb :'user/group/sent', locals: { sent: current_user.sent } %>
+
+    </div>
+
+  </div>
+
+  <div class="large-8 columns">
+
+    <%= erb :'user/group/friends', locals: { friends: current_user.friends } %>
+
+  </div>
+
+</div>

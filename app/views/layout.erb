@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/application.css">
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="/js/application.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+
+    <title>DBConnect</title>
+
+  </head>
+ 
+  <body>
+
+    <header>
+
+      <div class="frame">
+
+        <div class="left">
+
+          <ul class="navbar">
+            <li><a id="logo" href="/"></a></li>
+            <li><a id="caption" href="/">DBConnect</a></li>
+            <% if current_user %>
+              <li class="auth-li">| <a class="auth-link" href="/signout">Signout</a></li>
+            <% else %>
+              <li class="auth-li">| <a class="auth-link" href="/signin">Signin</a></li>
+              <li class="auth-li">| <a class="auth-link" href="/signup">Signup</a></li>
+            <% end %>
+          </ul>
+
+        </div>
+
+        <div class="right">
+
+          <ul class="navbar">
+
+            <% if current_user %>
+
+              <li><a href="/" id="nav1" class="link-button">Newsfeed</a></li>
+              <li><a href="/profile" id="nav2" class="link-button">Profile</a></li>
+              <li><a href="/friends" id="nav3" class="link-button">Friends</a></li>
+              <li><a href="/mailbox" id="nav4" class="link-button">Mailbox</a></li>
+
+            <% end %>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+    </header>
+    
+    <footer>
+
+      <div class="frame">
+
+        <div class="left">
+
+          <h6 id="copyright">
+            Copyright &#169; 2021 | Daniel Jarrett<br />All Rights Reserved
+          </h6>
+
+        </div>
+
+        <div class="right">
+
+          <form id="search-form" action="/search" method="GET">
+
+          <% if current_user %>
+
+              <input id="search-box" type="text" name="term" placeholder="Search for users...">
+              <input id="search-button" type="submit" value="Search">
+          
+          <% end %>
+
+          </form>
+
+        </div>
+
+      </div>
+
+    </footer>
+
+    <%= yield %>
+
+  </body>
+
+</html>

@@ -1,0 +1,47 @@
+<div class="panel">
+
+	<div class="conversation-header">
+
+		<h1>
+			<a href="/mailbox/<%= conversation.id %>" class="name-link">
+				<% if conversation.subject.length >= 22 %>
+					<%= conversation.subject[0...19] %>...
+				<% else %>
+					<%= conversation.subject %>
+				<% end %>
+			</a><span class="thin-font"> | <span class="timestamp"><%= conversation.created_at %></span></span>
+		</h1>
+		<h1>
+			<% if conversation.newest.author != current_user %>
+				<%= conversation.newest.author.first_name %>
+			<% else %>
+				<%= conversation.newest(2).author.first_name %>
+			<% end %>
+			and
+			<% if conversation.participants.count == 2 %>
+				1 other
+			<% else %>
+				<%= conversation.participants.count - 1 %> others
+			<% end %>
+		</h1>
+	
+		<ul>
+			<li>
+				<%= conversation.messages.order("created_at DESC").first.body[0...75] %>...
+			</li>
+		</ul>
+
+	</div>
+
+	<% if conversation.participants.include?(current_user) %>
+
+		<form action="/conversations/compact/<%= conversation.id %>/delete" method="POST" class="square">
+
+			<input type="submit" class="button flat cross" value="&times;">
+			<input type="hidden" name="_method" value="DELETE">
+
+		</form>
+
+	<% end %>
+
+</div>

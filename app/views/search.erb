@@ -1,0 +1,31 @@
+<div class="row">
+
+  <div class="large-6 columns">
+
+    <% matches.select.with_index { |post, index| index % 2 == 0 } .each do |match| %>
+
+      <div class="panel">
+
+        <%= erb :'user/show/default', locals: { user: match } %>
+
+      </div>
+
+    <% end %>
+
+  </div>
+
+  <div class="large-6 columns">
+
+    <% matches.select.with_index { |post, index| index % 2 != 0 } .each do |match| %>
+
+      <div class="panel">
+
+        <%= erb :'user/show/default', locals: { user: match } %>
+
+      </div>
+
+    <% end %>
+
+  </div>
+
+</div>

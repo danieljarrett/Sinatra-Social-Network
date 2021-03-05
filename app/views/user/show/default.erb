@@ -1,0 +1,82 @@
+<h1><a href="/profile/<%= user.id %>" class="name-link"><%= user.name %></a></h1>
+
+<div class="panel">
+
+	<ul>
+		<li>
+			<strong>Gender: </strong>
+			<%= user.gender %>
+		</li>
+		<li>
+			<strong>Hometown: </strong>
+			<%= user.hometown %>
+		</li>
+		<li>
+			<strong>Current City: </strong>
+			<%= user.current_city %>
+		</li>
+		<li>
+			<strong>Birthday: </strong>
+			<%= user.dob %>
+		</li>
+		<li>
+			<strong>Phone: </strong>
+			<%= user.phone %>
+		</li>
+		<li>
+			<strong>Email: </strong>
+			<%= user.email %>
+		</li>
+		<li>
+			<strong>Bio: </strong>
+			<%= user.bio %>
+		</li>
+	</ul>
+
+	<% if user == current_user %>
+
+		<form>
+			
+			<a href="/users/<%= user.id %>/edit" class="link-button flat">EDIT PROFILE</a>
+
+		</form>
+
+	<% elsif current_user.friends.include?(user) %>
+		
+		<form action="/friends/<%= user.id %>/remove" method="POST">
+			
+			<input type="submit" class="button flat" value="REMOVE FRIEND">
+			<input type="hidden" name="_method" value="DELETE">
+
+		</form>
+
+	<% elsif current_user.friendees.to_a.include?(user) %>
+
+		<form action="/friends/<%= user.id %>/remove" method="POST">
+			
+			<input type="submit" class="button flat" value="CANCEL REQUEST">
+			<input type="hidden" name="_method" value="DELETE">
+
+		</form>
+
+	<% elsif current_user.frienders.to_a.include?(user) %>
+
+		<form action="/friends/<%= user.id %>/add" method="POST">
+			
+			<input type="submit" class="button flat" value="ACCEPT REQUEST">
+			<input type="hidden" name="_method" value="PUT">
+
+		</form>
+
+	<% else %>
+
+		<form action="/friends/<%= user.id %>/add" method="POST">
+			
+			<input type="submit" class="button flat" value="SEND REQUEST">
+			<input type="hidden" name="_method" value="PUT">
+
+		</form>
+
+	<% end %>
+
+</div>

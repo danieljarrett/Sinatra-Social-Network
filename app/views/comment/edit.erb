@@ -1,0 +1,36 @@
+<div class="row">
+
+  <div class="large-12 columns">
+
+		<div class="panel">
+
+			<% if comment.author == current_user %>
+
+				<ul>
+
+					<form action="/comments/<%= comment.id %>/edit" method="POST">
+
+						<li>
+							<strong><%= comment.author.name %> commented:</strong>
+						</li>
+						<li>
+							<textarea name="comment[body]" type="text" cols="40" rows="8"><%= comment.body %></textarea>
+						</li>
+						<li>
+							<span class="timestamp"><%= comment.created_at %></span>
+						</li>
+						<li>
+							<input type="submit" class="button flat" value="SAVE">
+						</li>
+			
+					</form>
+
+				</ul>
+
+			<% end %>
+
+		</div>
+
+	</div>
+
+</div>

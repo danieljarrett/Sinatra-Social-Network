@@ -1,0 +1,36 @@
+<div class="row">
+
+  <div class="large-12 columns">
+
+		<div class="panel">
+
+			<% if post.author == current_user %>
+
+				<ul>
+
+					<form action="/posts/<%= post.id %>/edit" method="POST">
+
+						<li>
+							<strong><%= post.author.name %> posted:</strong>
+						</li>
+						<li>
+							<textarea name="post[body]" type="text" cols="40" rows="8"><%= post.body %></textarea>
+						</li>
+						<li>
+							<span class="timestamp"><%= post.created_at %></span>
+						</li>
+						<li>
+							<input type="submit" class="button flat" value="SAVE">
+						</li>
+			
+					</form>
+
+				</ul>
+
+			<% end %>
+
+		</div>
+
+	</div>
+
+</div>

@@ -1,0 +1,6 @@
+<form action="/messages/new/<%= conversation.id %>" method="POST">
+
+	<input type="hidden" name="_method" value="PUT">
+	<textarea placeholder="Write a reply..." onKeyPress="return submitenter(this, event)" name="body"></textarea>
+
+</form>
